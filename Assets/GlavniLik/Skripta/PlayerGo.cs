@@ -11,7 +11,7 @@ public class PlayerGo : MonoBehaviour
     public Transform body;
 
     bool right = false;
-    bool wakling=false;
+    bool wakling = false;
     void Start()
     {
 
@@ -40,24 +40,26 @@ public class PlayerGo : MonoBehaviour
         {
             if (wakling == true && right == false)
             {
-                animator.Play("OkretL");
+                animator.Play("WAlk");
             }
             else
             {
                 animator.Play("WAlk");
             }
+
         }
 
         if (moveX < 0)
         {
             if (wakling == true && right == true)
             {
-                animator.Play("OkretL");
+                animator.Play("WAlk");
             }
             else
             {
                 animator.Play("WAlk");
             }
+
         }
         if (moveX != 0 || moveY != 0)
         {
@@ -91,5 +93,5 @@ public class PlayerGo : MonoBehaviour
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
 
-    
+
 }
