@@ -15,6 +15,6 @@ public class SvetloTreperi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        svetlo.pointLightOuterRadius = Mathf.Lerp(1.5f, 2f, Mathf.PingPong(Time.time * 2, 1));
+        svetlo.pointLightOuterRadius = Mathf.Lerp(2.5f, 3f, Mathf.PingPong(Time.time * 2, 1));
     }
 }
