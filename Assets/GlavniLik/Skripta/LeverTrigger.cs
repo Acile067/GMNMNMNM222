@@ -7,6 +7,7 @@ public class LeverTrigger : MonoBehaviour
     [SerializeField] private Animator myAnimationController;
 
     public AudioSource rattleSource;
+    public GameObject Vrata1;
 
     private void Start() {
         rattleSource = GetComponent<AudioSource>();
@@ -15,20 +16,14 @@ public class LeverTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !myAnimationController.GetBool("isActive"))
         {
             rattleSource.Play();
             myAnimationController.SetBool("isActive", true);
+            Destroy(Vrata1);
         }
 
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            myAnimationController.SetBool("isActive", false);
-        }
-
-    }
+    
 }

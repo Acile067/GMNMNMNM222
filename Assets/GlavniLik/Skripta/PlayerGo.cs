@@ -38,6 +38,8 @@ public class PlayerGo : MonoBehaviour
 
         if (moveX > 0)
         {
+            
+            gameObject.transform.GetChild(0).transform.rotation = Quaternion.Lerp(Quaternion.Euler(new Vector3(0, 180, 0)), Quaternion.Euler(new Vector3(0, 0, 0)), 0.1f * Time.deltaTime);
             if (wakling == true && right == false)
             {
                 animator.Play("WAlk");
@@ -51,6 +53,8 @@ public class PlayerGo : MonoBehaviour
 
         if (moveX < 0)
         {
+            
+            gameObject.transform.GetChild(0).transform.rotation = Quaternion.Lerp(Quaternion.Euler(new Vector3(0, 0, 0)), Quaternion.Euler(new Vector3(0, 180, 0)), 0.1f * Time.deltaTime);
             if (wakling == true && right == true)
             {
                 animator.Play("WAlk");
@@ -63,12 +67,13 @@ public class PlayerGo : MonoBehaviour
         }
         if (moveX != 0 || moveY != 0)
         {
+            animator.Play("WAlk");
             if (moveX != 0)
-                transform.localScale = new Vector3(-moveX, transform.localScale.y, transform.localScale.z);
+                //transform.localScale = new Vector3(-moveX, transform.localScale.y, transform.localScale.z);
             if (moveX == 0 && moveY != 0)
             {
-                transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
-                animator.Play("WAlk");
+                //transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+                
             }
             wakling = true;
         }
