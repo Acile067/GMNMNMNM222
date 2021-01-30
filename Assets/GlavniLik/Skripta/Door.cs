@@ -7,8 +7,7 @@ public class Door : MonoBehaviour
 
     private PlayerGo thePlayer;
 
-    public SpriteRenderer theSR;
-    public Sprite doorOpenSprite;
+    
     // Start is called before the first frame update
     void Start()
     {

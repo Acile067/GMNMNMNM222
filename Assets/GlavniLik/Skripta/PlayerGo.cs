@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PlayerGo : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public Transform backpack;
     public float moveSpeed;
     public Rigidbody2D rb;
     private Vector2 moveDirection;
     public Animator animator;
     public Transform body;
     public Transform keyFollowPoint;
+    public float steps;
+    public float stepsMax;
+    
 
     public Key followingKey;
 
+    
     bool right = false;
     bool wakling = false;
     void Start()
@@ -38,11 +44,14 @@ public class PlayerGo : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         moveDirection = new Vector2(moveX, moveY).normalized;
+        
 
         if (moveX > 0)
         {
             
+            backpack.localPosition = new Vector3(-2f, backpack.localPosition.y, backpack.localPosition.z);
             gameObject.transform.GetChild(0).transform.rotation = Quaternion.Lerp(Quaternion.Euler(new Vector3(0, 180, 0)), Quaternion.Euler(new Vector3(0, 0, 0)), 0.1f * Time.deltaTime);
+            
             if (wakling == true && right == false)
             {
                 animator.Play("WAlk");
@@ -56,8 +65,12 @@ public class PlayerGo : MonoBehaviour
 
         if (moveX < 0)
         {
-            
+
+
+            backpack.localPosition = new Vector3(0.5f, backpack.localPosition.y, backpack.localPosition.z);
             gameObject.transform.GetChild(0).transform.rotation = Quaternion.Lerp(Quaternion.Euler(new Vector3(0, 0, 0)), Quaternion.Euler(new Vector3(0, 180, 0)), 0.1f * Time.deltaTime);
+            
+            
             if (wakling == true && right == true)
             {
                 animator.Play("WAlk");
@@ -70,6 +83,17 @@ public class PlayerGo : MonoBehaviour
         }
         if (moveX != 0 || moveY != 0)
         {
+            steps -= Time.deltaTime;
+
+            if (!audioSource.isPlaying && steps < 0)
+            {
+
+                audioSource.Play();
+
+                steps = stepsMax;
+            }
+                
+
             animator.Play("WAlk");
             if (moveX != 0)
                 //transform.localScale = new Vector3(-moveX, transform.localScale.y, transform.localScale.z);
@@ -93,6 +117,7 @@ public class PlayerGo : MonoBehaviour
             }
             animator.Play("Idle");
             wakling = false;
+            steps = 0;
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-
+    public SceneSwitch scenaSwitch;
     private bool isFollowing;
 
     public float followSpeed;
@@ -17,7 +17,7 @@ public class Key : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isFollowing)
         {
@@ -28,6 +28,7 @@ public class Key : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player")
         {
+            scenaSwitch.unlocked = true;
             if (!isFollowing)
             {
                 PlayerGo thePlayer = FindObjectOfType<PlayerGo>();
