@@ -9,6 +9,9 @@ public class PlayerGo : MonoBehaviour
     private Vector2 moveDirection;
     public Animator animator;
     public Transform body;
+    public Transform keyFollowPoint;
+
+    public Key followingKey;
 
     bool right = false;
     bool wakling = false;
