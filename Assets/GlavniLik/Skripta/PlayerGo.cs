@@ -23,7 +23,7 @@ public class PlayerGo : MonoBehaviour
     bool wakling = false;
     void Start()
     {
-
+        Cursor.visible = false;
     }
 
 
